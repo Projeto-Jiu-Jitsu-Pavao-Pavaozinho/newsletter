@@ -14,6 +14,10 @@ public class NewsletterApplication {
 		return "Hello";
 	}
 
+	public void incricao(String email) {
+
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(NewsletterApplication.class, args);
 	}
