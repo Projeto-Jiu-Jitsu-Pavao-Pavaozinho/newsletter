@@ -5,5 +5,5 @@ import org.springframework.data.repository.Repository;
 
 public interface EmailRepository extends Repository<EmailEntity, Integer> {
 
-    EmailEntity save(EmailEntity entity);
+    EmailEntity save(EmailEntity entity) throws Exception;
 }
