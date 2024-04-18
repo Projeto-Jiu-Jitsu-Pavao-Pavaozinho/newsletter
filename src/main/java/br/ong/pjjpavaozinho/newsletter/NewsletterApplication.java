@@ -8,6 +8,7 @@ import br.ong.pjjpavaozinho.newsletter.repositories.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +34,16 @@ public class NewsletterApplication {
 	@ResponseBody
 	public ResponseEntity incricao(@RequestBody EmailDTO request) {
 		EmailEntity emailEntity = new EmailEntity(request.getEmail());
-		Email email = new Email(request.getEmail(), "Inscrição Newsletter Pavãozinho",
-				"Sua incrição na newsletter da Pavãozinho foi realizada com sucesso!");
-		emailService.sendEmail(email);
-		return ResponseEntity.ok(repository.save(emailEntity));
+
+		try {
+			EmailEntity entidadeSalva = repository.save(emailEntity);
+			Email email = new Email(request.getEmail(), "Inscrição Newsletter Pavãozinho",
+					"Sua incrição na newsletter da Pavãozinho foi realizada com sucesso!");
+			emailService.sendEmail(email);
+			return new ResponseEntity(entidadeSalva, HttpStatus.CREATED);
+		} catch (Exception ex) {
+			return new ResponseEntity(HttpStatus.CONFLICT);
+		}
 	}
 
 	public static void main(String[] args) {
