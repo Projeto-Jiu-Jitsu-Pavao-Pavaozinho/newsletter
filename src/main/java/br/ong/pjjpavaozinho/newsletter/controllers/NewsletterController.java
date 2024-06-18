@@ -36,9 +36,4 @@ public class NewsletterController {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
     }
-
-    @RequestMapping
-    public String test() {
-        return "Hello";
-    }
 }
