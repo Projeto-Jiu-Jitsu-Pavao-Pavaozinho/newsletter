@@ -5,7 +5,6 @@ import br.ong.pjjpavaozinho.emailsender.EmailService;
 import br.ong.pjjpavaozinho.newsletter.dto.EmailDTO;
 import br.ong.pjjpavaozinho.newsletter.entities.EmailEntity;
 import br.ong.pjjpavaozinho.newsletter.repositories.EmailRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -23,11 +22,6 @@ public class NewsletterApplication {
 	public NewsletterApplication(EmailRepository repository, JavaMailSender sender) {
 		this.repository = repository;
 		this.emailService = new EmailService(sender);
-	}
-
-	@GetMapping("/")
-	public String hello() {
-		return "Hello";
 	}
 
 	@PostMapping("/")
