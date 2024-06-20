@@ -10,7 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/")
+@RestController
+@RequestMapping("/")
 public class NewsletterController {
     private EmailRepository repository;
     private EmailService emailService;
