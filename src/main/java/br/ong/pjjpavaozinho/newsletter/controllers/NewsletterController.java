@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin(origins = "*")
 public class NewsletterController {
     private EmailRepository repository;
     private EmailService emailService;
